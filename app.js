@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require("mongoose");
 var cors = require("cors");
+require('dotenv').config();
+
+console.log("mongoose-------", process.env.PORT);
 
 // mongoose.connect(`mongodb://127.0.0.1:27017/eventease_db`, {
 //   useNewUrlParser: true,
@@ -12,12 +15,9 @@ var cors = require("cors");
 // });
 mongoose.connect(`mongodb://127.0.0.1:27017/eventease_db`);
 
-console.log("mongoose-------", process.env.PORT)
-
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
-  // we're connected!
   console.log("connected to database");
 });
 // const cors = require('cors');
