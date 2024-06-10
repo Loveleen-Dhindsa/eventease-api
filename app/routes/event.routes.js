@@ -6,6 +6,8 @@ router.get("/", eventController.getAll);
 router.get("/:id", eventController.getSingle);
 router.put("/:id", eventController.update);
 router.delete("/:id", eventController.deleteEvent);
+router.get("/upcoming/evn", eventController.getUpcomingEvents);
+
 
 module.exports = router;
 

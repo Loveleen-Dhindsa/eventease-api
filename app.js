@@ -32,7 +32,7 @@ db.once("open", function () {
 // });
 
 var indexRouter = require("./app/routes/index.routes");
-// var adminRoutes = require('./admin/index.routes');
+var adminRoutes = require('./app/routes/admin.routes');
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", indexRouter);
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

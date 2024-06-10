@@ -24,6 +24,16 @@ eventController.getAll = async function (req, res) {
     }
 };
 
+eventController.getUpcomingEvents = async function (req, res) {
+    try {
+        var response = await eventService.getUpcomingEvents();
+        res.json({ data: response, success: true });
+    } catch (error) {
+        console.log(error);
+        sendError(res, error);
+    }
+};
+
 eventController.getSingle = async function (req, res, next) {
     var id = req.params.id;
     try {

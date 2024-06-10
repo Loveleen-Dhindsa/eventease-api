@@ -16,10 +16,18 @@ var userSchema = Schema(
       type: String,
       required: true,
     },
-    // phone: {
-    //   type: String,
-    //   required: true,
-    // },
+    phone: {
+      type: String,
+    },
+    role: {
+      type: String,
+      enum: ['admin', 'event_manager', 'attendee'],
+      default: 'attendee',
+    },
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

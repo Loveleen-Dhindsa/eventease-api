@@ -12,6 +12,19 @@ eventService.getAll = function () {
     });
 };
 
+eventService.getUpcomingEvents = function () {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const currentDate = new Date();
+            var response = await eventModel.find({ eventDate: { $gte: currentDate } });
+            console.log('response=======', response)
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 eventService.getSingle = function (id) {
     return new Promise(async (resolve, reject) => {
         try {

@@ -89,5 +89,51 @@ userService.login = function (body) {
   });
 };
 
+userService.getAll = function () {
+  return new Promise(async (resolve, reject) => {
+    try {
+      var response = await userModel.find();
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+userService.getSingleUser = function (id) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      var response = await userModel.findById(id);
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+userService.update = function (id, body) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      var response = await userModel.findByIdAndUpdate(id, body, {
+        new: true,
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+userService.deleteUser = function (id) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      var response = await userModel.findByIdAndDelete(id);
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 
 module.exports = userService;
