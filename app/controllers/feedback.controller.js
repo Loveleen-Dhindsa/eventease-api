@@ -1,11 +1,12 @@
-const eventService = require("../services/event.service");
-const eventController = {};
+const feedbackService = require("../services/feedback.service");
+const feedbackController = {};
 const { sendError } = require('../utils/errors.utils');
 
-eventController.create = async function (req, res, next) {
+feedbackController.create = async function (req, res, next) {
     var body = req.body;
+    console.log('body---------', body)
     try {
-        var response = await eventService.create(body);
+        var response = await feedbackService.create(body);
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
@@ -13,9 +14,9 @@ eventController.create = async function (req, res, next) {
     }
 };
 
-eventController.getAll = async function (req, res) {
+feedbackController.getAll = async function (req, res) {
     try {
-        var response = await eventService.getAll();
+        var response = await feedbackService.getAll();
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
@@ -23,20 +24,10 @@ eventController.getAll = async function (req, res) {
     }
 };
 
-eventController.getUpcomingEvents = async function (req, res) {
-    try {
-        var response = await eventService.getUpcomingEvents();
-        res.json({ data: response, success: true });
-    } catch (error) {
-        console.log(error);
-        sendError(res, error);
-    }
-};
-
-eventController.getSingle = async function (req, res, next) {
+feedbackController.getSingle = async function (req, res, next) {
     var id = req.params.id;
     try {
-        var response = await eventService.getSingle(id);
+        var response = await feedbackService.getSingle(id);
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
@@ -44,12 +35,12 @@ eventController.getSingle = async function (req, res, next) {
     }
 };
 
-eventController.update = async function (req, res, next) {
+feedbackController.update = async function (req, res, next) {
     var id = req.params.id;
     var body = req.body;
 
     try {
-        var response = await eventService.update(id, body);
+        var response = await feedbackService.update(id, body);
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
@@ -57,10 +48,10 @@ eventController.update = async function (req, res, next) {
     }
 };
 
-eventController.deleteEvent = async function (req, res, next) {
+feedbackController.deleteFeedback = async function (req, res, next) {
     var id = req.params.id;
     try {
-        var response = await eventService.deleteEvent(id);
+        var response = await feedbackService.deleteFeedback(id);
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
@@ -68,7 +59,7 @@ eventController.deleteEvent = async function (req, res, next) {
     }
 };
 
-module.exports = eventController;
+module.exports = feedbackController;
 
 
 

@@ -25,6 +25,19 @@ userController.login = async function (req, res, next) {
   }
 };
 
+userController.updateAccount = async function (req, res, next) {
+  var id = req.params.id;
+  var body = req.body;
+
+  try {
+    var response = await userService.update(id, body);
+    res.json({ data: response, success: true });
+  } catch (error) {
+    console.log(error);
+    sendError(res, error);
+  }
+};
+
 module.exports = userController;
 
 

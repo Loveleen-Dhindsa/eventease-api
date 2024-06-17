@@ -21,8 +21,7 @@ var userSchema = Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'event_manager', 'attendee'],
-      default: 'attendee',
+      enum: ['admin', 'event-manager', 'attendee'],
     },
     isActive: {
       type: Boolean,
