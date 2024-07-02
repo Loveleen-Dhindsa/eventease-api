@@ -17,7 +17,6 @@ eventService.getUpcomingEvents = function () {
         try {
             const currentDate = new Date();
             var response = await eventModel.find({ eventDate: { $gte: currentDate } });
-            console.log('response=======', response)
             resolve(response);
         } catch (error) {
             reject(error);

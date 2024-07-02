@@ -4,7 +4,6 @@ const { sendError } = require('../utils/errors.utils');
 
 feedbackController.create = async function (req, res, next) {
     var body = req.body;
-    console.log('body---------', body)
     try {
         var response = await feedbackService.create(body);
         res.json({ data: response, success: true });

@@ -19,6 +19,9 @@ var userSchema = Schema(
     phone: {
       type: String,
     },
+    profileUrl: {
+      type: String,
+    },
     role: {
       type: String,
       enum: ['admin', 'event-manager', 'attendee'],

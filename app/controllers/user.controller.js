@@ -2,6 +2,7 @@ const userService = require("../services/user.service");
 const userController = {};
 const { sendError } = require('../utils/errors.utils');
 
+var apiUrl = process.env.APP_URL;
 userController.signup = async function (req, res, next) {
   var body = req.body;
   try {
@@ -26,11 +27,44 @@ userController.login = async function (req, res, next) {
 };
 
 userController.updateAccount = async function (req, res, next) {
-  var id = req.params.id;
+  const userId = req.userId;
   var body = req.body;
+  try {
+    var response = await userService.update(userId, body);
+    res.json({ data: response, success: true });
+  } catch (error) {
+    console.log(error);
+    sendError(res, error);
+  }
+};
 
+userController.create = async function (req, res, next) {
+  var image = req.file;
+  var body = req.body;
+  req.body.profileUrl = apiUrl + '/public/' + image.filename;
+  try {
+    var response = await userService.create(body);
+    res.json({ data: response, success: true });
+  } catch (error) {
+    console.log(error);
+    sendError(res, error);
+  }
+};
+
+userController.update = async function (req, res, next) {
   try {
     var response = await userService.update(id, body);
+    res.json({ data: response, success: true });
+  } catch (error) {
+    console.log(error);
+    sendError(res, error);
+  }
+};
+
+userController.logout = async function (req, res, next) {
+  var body = req.body;
+  try {
+    var response = await userService.logout(body);
     res.json({ data: response, success: true });
   } catch (error) {
     console.log(error);

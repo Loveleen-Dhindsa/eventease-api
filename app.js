@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require("mongoose");
 var cors = require("cors");
@@ -35,6 +36,8 @@ var indexRouter = require("./app/routes/index.routes");
 var adminRoutes = require('./app/routes/admin.routes');
 
 var app = express();
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,7 +49,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use("/public", express.static("public"));
 app.use("/", indexRouter);
 app.use('/admin', adminRoutes);
 
