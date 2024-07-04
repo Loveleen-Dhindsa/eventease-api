@@ -49,11 +49,9 @@ userService.signup = function (body) {
 userService.login = function (body) {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log("body", body);
       var user = await userModel.findOne({
         email: body.email,
       });
-      console.log("Iser", user);
       if (!user) {
         reject(
           createErrorMessage({

@@ -8,12 +8,6 @@ var mongoose = require("mongoose");
 var cors = require("cors");
 require('dotenv').config();
 
-console.log("mongoose-------", process.env.PORT);
-
-// mongoose.connect(`mongodb://127.0.0.1:27017/eventease_db`, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
 mongoose.connect(`mongodb://127.0.0.1:27017/eventease_db`);
 
 var db = mongoose.connection;
@@ -21,16 +15,6 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("connected to database");
 });
-// const cors = require('cors');
-
-// mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
-
-// var db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error:"));
-// db.once("open", function () {
-//   // we're connected!
-//   console.log("connected to database");
-// });
 
 var indexRouter = require("./app/routes/index.routes");
 var adminRoutes = require('./app/routes/admin.routes');
