@@ -4,6 +4,7 @@ const adminController = require("../controllers/admin.controller");
 router.get("/", adminController.getAll);
 router.get("/events", adminController.getAllEvents);
 router.get("/contacts", adminController.getAllContacts);
+router.get("/bookings", adminController.getAllBookings);
 router.get("/feedback", adminController.getAllFeedback);
 router.post("/events", adminController.createEvent);
 router.post("/", adminController.create);
@@ -19,5 +20,7 @@ router.delete("/feedback/:id", adminController.deleteFeedback);
 router.get("/:id/events", adminController.getSingleEvent);
 router.delete("/:id/events", adminController.deleteEvent);
 router.put("/:id/events", adminController.updateEvent);
+router.get("/bookings/:id", adminController.getSingleBooking);
+router.delete("/bookings/:id", adminController.deleteBooking);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+const bookingService = require("../services/booking.service");
 const contactService = require("../services/contact.service");
 const eventService = require("../services/event.service");
 const feedbackService = require("../services/feedback.service");
@@ -94,6 +95,17 @@ adminController.getAllContacts = async function (req, res) {
     }
 };
 
+adminController.getAllBookings = async function (req, res) {
+    try {
+        var response = await bookingService.getAll();
+        console.log('getAllBookings---------', response)
+        res.json({ data: response, success: true });
+    } catch (error) {
+        console.log(error);
+        sendError(res, error);
+    }
+};
+
 adminController.getSingleContact = async function (req, res, next) {
     var id = req.params.id;
     try {
@@ -109,6 +121,28 @@ adminController.deleteContact = async function (req, res, next) {
     var id = req.params.id;
     try {
         var response = await contactService.deleteContact(id);
+        res.json({ data: response, success: true });
+    } catch (error) {
+        console.log(error);
+        sendError(res, error);
+    }
+};
+
+adminController.getSingleBooking = async function (req, res, next) {
+    var id = req.params.id;
+    try {
+        var response = await bookingService.getSingle(id);
+        res.json({ data: response, success: true });
+    } catch (error) {
+        console.log(error);
+        sendError(res, error);
+    }
+};
+
+adminController.deleteBooking = async function (req, res, next) {
+    var id = req.params.id;
+    try {
+        var response = await bookingService.deleteBooking(id);
         res.json({ data: response, success: true });
     } catch (error) {
         console.log(error);
